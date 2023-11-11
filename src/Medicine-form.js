@@ -1,43 +1,53 @@
+// MedicineForm.js
 import React, { useState } from 'react';
-import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
+import { Form, Button, Badge } from 'react-bootstrap';
 import axios from 'axios';
 import { IoMedkit, IoSend, IoTrash } from 'react-icons/io5';
 
-
 const bodyStyle = {
-  background: 'linear-gradient(to right, #2C5364, #203A43, #0F2027)',
-  color: '#f4f4f4',
-  fontFamily: '"Lato", sans-serif',
-  // No need for minHeight or padding here if you're applying it globally
+    background: 'linear-gradient(to left, rgb(4, 14, 50), #34495E)',
+    color: '#fff',
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'row', // Display the boxes side by side
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'Roboto, sans-serif',
+  };
+  
+  const formBoxStyle = {
+    background: 'linear-gradient(to left, rgb(4, 14, 50), #34495E)',
+    borderRadius: '8%',
+    padding: '3%',
+    width: '40%', // Adjust width as needed
+    maxWidth: '400px',
+    marginRight: '20px', // Add margin for spacing
+    overflowY: 'auto',
+    boxShadow: '0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(0, 0, 0, 0.2)',
+    textAlign: 'center',
+  };
+const scheduledMedicineBoxStyle = {
+  ...formBoxStyle,
+  width: '30%', // Adjust width as needed
+  marginLeft: '20px', // Adjust margin as needed
 };
 
-const formContainerStyle = {
-  background: '#2c3e50',
-  borderRadius: '16px',
-  padding: '2rem',
-  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)',
-  margin: '1rem',
-};
-
-const inputStyle = {
-  marginBottom: '1rem',
+const labelStyle = {
+  color: '#fff',
+  textAlign: 'left',
 };
 
 const buttonStyle = {
-  margin: '5px auto',
-  display: 'block',
+  margin: '5px',
 };
 
-const listGroupItemStyle = {
-  background: '#34495e',
-  color: '#f4f4f4',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
-  borderRadius: '8px',
-  padding: '0.75rem 1rem',
-  margin: '0.5rem 0',
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
+const iconStyle = {
+  marginRight: '5px',
+};
+
+const successTextStyle = {
+  color: '#28a745',
+  textAlign: 'center',
 };
 
 const MedicineForm = () => {
@@ -67,7 +77,7 @@ const MedicineForm = () => {
 
   const sendToServer = () => {
     axios
-      .post('your-server-endpoint', { medicineList })
+      .post('https://b8f8-103-163-113-106.ngrok-free.app/getMeds ', { medicineList })
       .then((response) => {
         console.log('Server response:', response.data);
         setApiCalled(true);
@@ -76,37 +86,80 @@ const MedicineForm = () => {
         console.error('Error:', error);
       });
   };
-  // ... existing state hooks
-
-  // ... existing functions
 
   return (
-    <Container style={bodyStyle}>
-      <Row className="justify-content-center">
-        <Col md={5} style={formContainerStyle}>
-          <h2>Add Medicine</h2>
-          <Form>
-            {/* ... Form Groups with updated inputStyle */}
-          </Form>
+    <div style={bodyStyle}>
+      <div style={formBoxStyle}>
+        <h2 className="mt-4 mb-4">Add Medicine</h2>
+        <Form>
+          <Form.Group controlId="medicineName">
+            <Form.Label style={labelStyle}>Medicine Name:</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter medicine name"
+              value={medicineName}
+              onChange={(e) => setMedicineName(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="dosage">
+            <Form.Label style={labelStyle}>Dosage:</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter dosage"
+              value={dosage}
+              onChange={(e) => setDosage(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="duration">
+            <Form.Label style={labelStyle}>Duration:</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter duration"
+              value={duration}
+              onChange={(e) => setDuration(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="recipientNumber">
+            <Form.Label style={labelStyle}>Recipient Number:</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter recipient number"
+              value={recipientNumber}
+              onChange={(e) => setRecipientNumber(e.target.value)}
+            />
+          </Form.Group>
+
           <Button variant="primary" onClick={addMedicine} style={buttonStyle}>
-            <IoMedkit className="me-2" />
+            <IoMedkit style={iconStyle} />
             Add Medicine
           </Button>
+
           <Button variant="success" onClick={sendToServer} style={buttonStyle}>
-            <IoSend className="me-2" />
+            <IoSend style={iconStyle} />
             Send to Server
           </Button>
-        </Col>
+        </Form>
+      </div>
 
-        <Col md={5} style={formContainerStyle}>
-          <h2>Scheduled Medicines</h2>
-          {apiCalled && <Alert variant="success">Medicine list sent successfully!</Alert>}
-          <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
-            {/* ... List of medicines with updated listGroupItemStyle */}
-          </div>
-        </Col>
-      </Row>
-    </Container>
+      <div style={scheduledMedicineBoxStyle}>
+        <h2 className="mt-4 mb-4">Scheduled Medicines</h2>
+        <ul style={{ listStyle: 'none', padding: 0 }}>
+          {medicineList.map((medicine, index) => (
+            <li key={index} style={{ textAlign: 'left', marginBottom: '10px' }}>
+              {'Medicine: ${medicine.medicineName}, Dosage: ${medicine.dosage}, Duration: ${medicine.duration}, Recipient Number: ${medicine.recipientNumber}'}
+              <Button variant="danger"
+                onClick={() => deleteMedicine(index)}
+                style={{ marginLeft: '10px' }} >
+              <IoTrash />
+              </Button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 };
 
