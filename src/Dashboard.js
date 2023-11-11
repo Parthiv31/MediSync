@@ -323,7 +323,7 @@ function Dashboard() {
                                                         <a className="dropdown-item" href="#">Another action</a>
                                                         <div className="dropdown-divider"></div>
                                                         <a className="dropdown-item" href="#">Something else here</a>
-                                                    </div>
+                                                    </div> 
                                                 </div>
                                             </div>
                                             {/*  <!-- Card Body --> */}
