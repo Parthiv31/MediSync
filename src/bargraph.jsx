@@ -27,10 +27,7 @@ const options = {
     legend: {
       position: 'top',
     },
-    title: {
-      display: true,
-      text: 'Custom Data Bar Chart',
-    },
+    
   },
 };
 

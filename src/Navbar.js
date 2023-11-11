@@ -50,9 +50,7 @@ function NavScrollExample() {
             >
               Dashboard
             </Nav.Link>
-            
           </Nav>
-          
         </Navbar.Collapse>
       </Container>
     </Navbar>

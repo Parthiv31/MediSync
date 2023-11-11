@@ -12,7 +12,8 @@ const LandingPage = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        color: '#fff', // Set text color to white
+        color: '#fff', 
+        // Set text color to white
       }}
     >
       <Container>
