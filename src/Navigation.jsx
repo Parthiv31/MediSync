@@ -4,34 +4,79 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
 
 function NavScrollExample() {
   return (
     <Navbar expand="lg" bg="dark" variant="dark">
       <Container fluid>
-        {/* Added some padding to give space for the logo */}
-        <Navbar.Brand as={Link} to="/" style={{ paddingRight: '20px' }}>
-          Medisync
-        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
-            <Nav.Link as={Link} to="/addmedicine">
+            <Nav.Link
+              as={Link}
+              to="/"
+              activeClassName="active-link"
+              style={{
+                background: '#ffffff', // Text color (white)
+                WebkitBackgroundClip: 'text',
+                color: 'transparent',
+                textDecoration: 'none',
+              }}
+            >
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/action2">
-              Link
+            <Nav.Link
+              as={Link}
+              to="/addmedicine"
+              activeClassName="active-link"
+              style={{
+                background: '#ffffff', // Text color (white)
+                WebkitBackgroundClip: 'text',
+                color: 'transparent',
+                textDecoration: 'none',
+              }}
+            >
+              AddMedicine
             </Nav.Link>
             <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item as={Link} to="/action3">
+              <NavDropdown.Item
+                as={Link}
+                to="/action3"
+                activeClassName="active-link"
+                style={{
+                  background: '#ffffff', // Text color (white)
+                  WebkitBackgroundClip: 'text',
+                  color: 'transparent',
+                  textDecoration: 'none',
+                }}
+              >
                 Action
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/action4">
+              <NavDropdown.Item
+                as={Link}
+                to="/action4"
+                activeClassName="active-link"
+                style={{
+                  background: '#ffffff', // Text color (white)
+                  WebkitBackgroundClip: 'text',
+                  color: 'transparent',
+                  textDecoration: 'none',
+                }}
+              >
                 Another action
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item as={Link} to="/action5">
+              <NavDropdown.Item
+                as={Link}
+                to="/action5"
+                activeClassName="active-link"
+                style={{
+                  background: '#ffffff', // Text color (white)
+                  WebkitBackgroundClip: 'text',
+                  color: 'transparent',
+                  textDecoration: 'none',
+                }}
+              >
                 Something else here
               </NavDropdown.Item>
             </NavDropdown>
@@ -39,7 +84,11 @@ function NavScrollExample() {
               Link
             </Nav.Link>
           </Nav>
-          {/* Removed the search form */}
+          <img
+            src=""
+            alt="Your Image"
+            style={{ width: '50px', height: '50px', marginRight: '20px' }} // Adjust the width, height, and margin as needed
+          />
         </Navbar.Collapse>
       </Container>
     </Navbar>

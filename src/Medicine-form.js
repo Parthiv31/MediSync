@@ -5,19 +5,21 @@ import axios from 'axios';
 import { IoMedkit, IoSend, IoTrash } from 'react-icons/io5';
 
 const bodyStyle = {
-    background: 'linear-gradient(to left, rgb(4, 14, 50), #34495E)',
-    color: '#fff',
-    minHeight: '100vh',
-    display: 'flex',
-    flexDirection: 'row', // Display the boxes side by side
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontFamily: 'Roboto, sans-serif',
-  };
+  background: '#12b0ff',
+  color: '#fff',
+  minHeight: '100vh',
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontFamily: 'Roboto, sans-serif',
+  margin: 0, // Remove default margins
+  overflow: 'hidden', // Prevent scrolling on the body
+};
   
   const formBoxStyle = {
-    background: 'linear-gradient(to left, rgb(4, 14, 50), #34495E)',
-    borderRadius: '8%',
+    background: '#415d94',
+    borderRadius: '4%',
     padding: '3%',
     width: '40%', // Adjust width as needed
     maxWidth: '400px',
@@ -28,8 +30,7 @@ const bodyStyle = {
   };
 const scheduledMedicineBoxStyle = {
   ...formBoxStyle,
-  width: '30%', // Adjust width as needed
-  marginLeft: '20px', // Adjust margin as needed
+  
 };
 
 const labelStyle = {
@@ -38,6 +39,7 @@ const labelStyle = {
 };
 
 const buttonStyle = {
+  
   margin: '5px',
 };
 
@@ -137,10 +139,7 @@ const MedicineForm = () => {
             Add Medicine
           </Button>
 
-          <Button variant="success" onClick={sendToServer} style={buttonStyle}>
-            <IoSend style={iconStyle} />
-            Send to Server
-          </Button>
+          
         </Form>
       </div>
 
@@ -148,16 +147,22 @@ const MedicineForm = () => {
         <h2 className="mt-4 mb-4">Scheduled Medicines</h2>
         <ul style={{ listStyle: 'none', padding: 0 }}>
           {medicineList.map((medicine, index) => (
-            <li key={index} style={{ textAlign: 'left', marginBottom: '10px' }}>
-              {'Medicine: ${medicine.medicineName}, Dosage: ${medicine.dosage}, Duration: ${medicine.duration}, Recipient Number: ${medicine.recipientNumber}'}
-              <Button variant="danger"
-                onClick={() => deleteMedicine(index)}
-                style={{ marginLeft: '10px' }} >
-              <IoTrash />
+            <li key={index}>
+              <div >
+                <strong>Medicine:</strong> {medicine.medicineName}, <strong>Dosage:</strong> {medicine.dosage}, <strong>Duration:</strong> {medicine.duration}, <strong>Recipient Number:</strong> {medicine.recipientNumber}
+              </div>
+              <Button variant="danger" onClick={() => deleteMedicine(index)}>
+                <IoTrash />
               </Button>
-            </li>
+           </li>
+            
           ))}
+
         </ul>
+        <Button variant="success" onClick={sendToServer} style={buttonStyle}>
+            <IoSend style={iconStyle} />
+            Send to Server
+          </Button>
       </div>
     </div>
   );
