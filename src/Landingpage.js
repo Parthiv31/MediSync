@@ -2,7 +2,6 @@ import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 
 const LandingPage = () => {
-    document.body.style.overflow = 'hidden';
   return (
     <div
       style={{

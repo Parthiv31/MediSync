@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Dashboard.css';
+import CustomDataBarChart from './bargraph';
+import DoughnutChart from './Donutchart';
 
 function Dashboard() {
     const [style, setStyle] = useState("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion");
@@ -262,11 +264,11 @@ function Dashboard() {
                                                 <div className="row no-gutters align-items-center">
                                                     <div className="col mr-2">
                                                         <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                            Earnings (Monthly)</div>
-                                                        <div className="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                                            Medicines</div>
+                                                        <div className="h5 mb-0 font-weight-bold text-gray-800">Dolo , Mefthagesic</div>
                                                     </div>
                                                     <div className="col-auto">
-                                                        <i className="fas fa-calendar fa-2x text-gray-300"></i>
+                                                        <i className="fas fa-heart fa-2x text-gray-300"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -280,11 +282,11 @@ function Dashboard() {
                                                 <div className="row no-gutters align-items-center">
                                                     <div className="col mr-2">
                                                         <div className="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                            Earnings (Annual)</div>
-                                                        <div className="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                            Last Doctor's visit</div>
+                                                        <div className="h5 mb-0 font-weight-bold text-gray-800">2/11/2023</div>
                                                     </div>
                                                     <div className="col-auto">
-                                                        <i className="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                                        <i className="fas fa-calendar fa-2x text-gray-300"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -297,7 +299,7 @@ function Dashboard() {
                                             <div className="card-body">
                                                 <div className="row no-gutters align-items-center">
                                                     <div className="col mr-2">
-                                                        <div className="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                                        <div className="text-xs font-weight-bold text-info text-uppercase mb-1">Medicine Course
                                                         </div>
                                                         <div className="row no-gutters align-items-center">
                                                             <div className="col-auto">
@@ -326,11 +328,11 @@ function Dashboard() {
                                                 <div className="row no-gutters align-items-center">
                                                     <div className="col mr-2">
                                                         <div className="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                            Pending Requests</div>
-                                                        <div className="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                            next doctor's visit</div>
+                                                        <div className="h5 mb-0 font-weight-bold text-gray-800">15/11/2023</div>
                                                     </div>
                                                     <div className="col-auto">
-                                                        <i className="fas fa-comments fa-2x text-gray-300"></i>
+                                                        <i className="fas fa-calendar fa-2x text-gray-300"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -348,7 +350,7 @@ function Dashboard() {
                                             {/*  <!-- Card Header - Dropdown --> */}
                                             <div
                                                 className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                                <h6 className="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                                <h6 className="m-0 font-weight-bold text-primary">MEDICINE ADHERENCE GRAPH</h6>
                                                 <div className="dropdown no-arrow">
                                                     <a className="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -365,6 +367,7 @@ function Dashboard() {
                                                 </div>
                                             </div>
                                             {/*  <!-- Card Body --> */}
+                                            <CustomDataBarChart></CustomDataBarChart>
                                             <div className="card-body">
                                                 <div className="chart-area">
                                                     <canvas id="myAreaChart"></canvas>
@@ -372,14 +375,14 @@ function Dashboard() {
                                             </div>
                                         </div>
                                     </div>
-
+                         
                                     {/*  <!-- Pie Chart --> */}
                                     <div className="col-xl-4 col-lg-5">
                                         <div className="card shadow mb-4">
                                             {/*  <!-- Card Header - Dropdown --> */}
                                             <div
                                                 className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                                <h6 className="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                                                <h6 className="m-0 font-weight-bold text-primary">MEDICINE CATEGORIZATION</h6>
                                                 <div className="dropdown no-arrow">
                                                     <a className="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -396,21 +399,12 @@ function Dashboard() {
                                                 </div>
                                             </div>
                                             {/*  <!-- Card Body --> */}
+                                            <DoughnutChart></DoughnutChart>
                                             <div className="card-body">
                                                 <div className="chart-pie pt-4 pb-2">
                                                     <canvas id="myPieChart"></canvas>
                                                 </div>
-                                                <div className="mt-4 text-center small">
-                                                    <span className="mr-2">
-                                                        <i className="fas fa-circle text-primary"></i> Direct
-                                                    </span>
-                                                    <span className="mr-2">
-                                                        <i className="fas fa-circle text-success"></i> Social
-                                                    </span>
-                                                    <span className="mr-2">
-                                                        <i className="fas fa-circle text-info"></i> Referral
-                                                    </span>
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
