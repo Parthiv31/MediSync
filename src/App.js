@@ -38,6 +38,22 @@ const scheduledMedicineBoxStyle = {
   alignItems: 'flex-start',
 };
 
+const listItemStyle = {
+  textAlign: 'left',
+  marginBottom: '2%',
+  
+  borderRadius: '5%', // Add rounded corners
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+};
+
+const contentBoxStyle = {
+  background: 'linear-gradient(to right, rgb(4, 14, 50),#1a4487)',// Background color for the content box
+  padding: '6%', // Adjust padding for spacing
+  borderRadius: '5px', // Add rounded corners
+};
+
 const labelStyle = {
   color: '#fff',
   textAlign: 'left',
@@ -132,16 +148,18 @@ const MedicineForm = () => {
               onChange={(e) => setRecipientNumber(e.target.value)}
             />
           </Form.Group>
+          <div style={{ marginTop: '1em'  }}>
+            <Button variant="primary" onClick={addMedicine} style={{ background: 'linear-gradient(to right, #021E32, #34495E)' }}>
+              <IoMedkit style={iconStyle} />
+              Add Medicine
+            </Button>
 
-          <Button variant="primary" onClick={addMedicine} style={buttonStyle}>
-            <IoMedkit style={iconStyle} />
-            Add Medicine
-          </Button>
-
-          <Button variant="success" onClick={sendToServer} style={buttonStyle}>
-            <IoSend style={iconStyle} />
-            Send to Server
-          </Button>
+            <Button variant="success" onClick={sendToServer} style={{ background: 'linear-gradient(to right, #021E32, #34495E)' }}>
+              <IoSend style={iconStyle} />
+              Schedule
+            </Button>
+          </div>
+          
         </Form>
       </div>
 
@@ -149,8 +167,13 @@ const MedicineForm = () => {
         <h2 className="mt-4 mb-4">Scheduled Medicines</h2>
         <ul style={{ listStyle: 'none', padding: 0 }}>
           {medicineList.map((medicine, index) => (
-            <li key={index} style={{ textAlign: 'left', marginBottom: '10px' }}>
-              {`Medicine: ${medicine.medicineName}, Dosage: ${medicine.dosage}, Duration: ${medicine.duration}, Recipient Number: ${medicine.recipientNumber}`}
+            <li key={index} style={listItemStyle}>
+              <div style={contentBoxStyle}>
+              <p>{`Medicine: ${medicine.medicineName}`}</p>
+              <p>{`Dosage: ${medicine.dosage}`}</p>
+              <p>{`Duration: ${medicine.duration}`}</p>
+              <p>{`Recipient Number: ${medicine.recipientNumber}`}</p>
+            </div>
               <Button variant="danger" onClick={() => deleteMedicine(index)} className="ms-2" >
             <IoTrash /> Delete
             </Button>
