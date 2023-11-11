@@ -5,7 +5,7 @@ import axios from 'axios';
 import { IoMedkit, IoSend, IoTrash } from 'react-icons/io5';
 
 const bodyStyle = {
-  background: '#12b0ff',
+  background: 'linear-gradient(to right, #50adfa, #4e90c7)',
   color: '#fff',
   minHeight: '100vh',
   display: 'flex',
@@ -19,37 +19,38 @@ const bodyStyle = {
   
   const formBoxStyle = {
     background: '#415d94',
-    borderRadius: '4%',
-    padding: '3%',
+    borderRadius: '2%',
+    padding: '1rem',
     width: '40%', // Adjust width as needed
     maxWidth: '400px',
-    marginRight: '20px', // Add margin for spacing
+    margin: '1rem', // Add margin for spacing
     overflowY: 'auto',
     boxShadow: '0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(0, 0, 0, 0.2)',
     textAlign: 'center',
+    fontFamily: 'Roboto, sans-serif',
   };
 const scheduledMedicineBoxStyle = {
   ...formBoxStyle,
+  borderRadius: '1.5%',
   
 };
 
 const labelStyle = {
   color: '#fff',
-  textAlign: 'left',
+  fontWeight: 'bold',
 };
 
-const buttonStyle = {
-  
-  margin: '5px',
+const ButtonStyle = {
+  margin: '1rem',
+  background: '#045db0',
+  borderColor: '#004cff',
+  borderRadius: '1rem',
+  color: '#fff',
+  transition: 'background 0.3s, color 0.3s',
 };
 
 const iconStyle = {
   marginRight: '5px',
-};
-
-const successTextStyle = {
-  color: '#28a745',
-  textAlign: 'center',
 };
 
 const MedicineForm = () => {
@@ -134,7 +135,7 @@ const MedicineForm = () => {
             />
           </Form.Group>
 
-          <Button variant="primary" onClick={addMedicine} style={buttonStyle}>
+          <Button variant="primary" onClick={addMedicine} style={ButtonStyle}>
             <IoMedkit style={iconStyle} />
             Add Medicine
           </Button>
@@ -159,7 +160,7 @@ const MedicineForm = () => {
           ))}
 
         </ul>
-        <Button variant="success" onClick={sendToServer} style={buttonStyle}>
+        <Button variant="success" onClick={sendToServer} style={ButtonStyle}>
             <IoSend style={iconStyle} />
             Send to Server
           </Button>
